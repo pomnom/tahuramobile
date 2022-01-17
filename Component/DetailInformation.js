@@ -10,6 +10,7 @@ import {
   ScrollView,
   Divider,
   Spinner,
+  Button,
 } from 'native-base';
 import axiosconfig from './config/axiosconfig';
 
@@ -57,7 +58,7 @@ function DetailInformation({navigation, route}) {
           <Box w={'100%'} h={'100%'}>
             <Box>
               <AspectRatio>
-                <Box>
+                <Box borderBottomRadius="3xl" shadow="9">
                   <Image
                     source={{
                       uri: 'https://www.holidify.com/images/cmsuploads/compressed/Bangalore_citycover_20190613234056.jpg',
@@ -94,6 +95,17 @@ function DetailInformation({navigation, route}) {
                 <Text mt="0.5" fontSize="lg" textAlign="center">
                   {datas.jumlah && 'Jumlah : ' + datas.jumlah}
                 </Text>
+                <Center m="2">
+                  <Button
+                    onPress={() =>
+                      navigation.navigate('Peta', {
+                        organismeId: datas._id,
+                      })
+                    }
+                    w="30%">
+                    Lihat Peta
+                  </Button>
+                </Center>
               </Stack>
             </Stack>
           </Box>
