@@ -13,6 +13,16 @@ function DetailPeta({navigations, route}) {
   const [organisme, setorganisme] = useState(null);
   const [myloc, setmyloc] = useState(null);
   useEffect(() => {
+    Geolocation.getCurrentPosition(
+      position => {
+        setmyloc(position);
+      },
+      error => {
+        // See error code charts below.
+        console.log(error.code, error.message);
+      },
+      {enableHighAccuracy: true, timeout: 15000, maximumAge: 10000},
+    );
     axios
       .all([
         axiosconfig.getDataById(organismeId),
@@ -24,16 +34,6 @@ function DetailPeta({navigations, route}) {
           setkordinats(responses[1].data);
           setloading(false);
           seterror(null);
-          Geolocation.getCurrentPosition(
-            position => {
-              setmyloc(position);
-            },
-            error => {
-              // See error code charts below.
-              console.log(error.code, error.message);
-            },
-            {enableHighAccuracy: true, timeout: 15000, maximumAge: 10000},
-          );
         }),
       )
       .catch(err => {
@@ -63,15 +63,12 @@ function DetailPeta({navigations, route}) {
       {kordinats && (
         <MapView
           initialRegion={{
-            latitude: myloc
-              ? myloc.coords.latitude
-              : parseFloat(kordinats[0].latitude),
-            longitude: myloc
-              ? myloc.coords.longitude
-              : parseFloat(kordinats[0].longtitude),
+            latitude: myloc ? myloc.coords.latitude : -8.3,
+            longitude: myloc ? myloc.coords.longitude : 116.4,
             latitudeDelta: 0.0922,
             longitudeDelta: 0.0421,
           }}
+          showsUserLocation={true}
           zoomControlEnabled={true}
           style={{width: 400, height: 700}}>
           {kordinats.map(kor => {
@@ -85,15 +82,6 @@ function DetailPeta({navigations, route}) {
               />
             );
           })}
-          {myloc && (
-            <Marker
-              pinColor="cyan"
-              coordinate={{
-                latitude: myloc.coords.latitude,
-                longitude: myloc.coords.longitude,
-              }}
-            />
-          )}
         </MapView>
       )}
     </Center>

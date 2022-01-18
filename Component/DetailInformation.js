@@ -47,7 +47,7 @@ function DetailInformation({navigation, route}) {
       <Center flex={1}>
         {error && <Box>{error}</Box>}
         {loading && (
-          <Center flexDir="row">
+          <Center flexDir="row" my="50%">
             <Spinner accessibilityLabel="Loading posts" size="lg" />
             <Heading color="primary.500" fontSize="md">
               Memuat Data
@@ -61,7 +61,7 @@ function DetailInformation({navigation, route}) {
                 <Box borderBottomRadius="3xl" shadow="9">
                   <Image
                     source={{
-                      uri: 'https://www.holidify.com/images/cmsuploads/compressed/Bangalore_citycover_20190613234056.jpg',
+                      uri: datas.gambar,
                     }}
                     alt="image"
                     size="100%"

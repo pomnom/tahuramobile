@@ -7,9 +7,11 @@ import DetailInformation from './Component/DetailInformation';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import FaunaCardList from './Component/FaunaCardList';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {faCat, faHome, faTree} from '@fortawesome/free-solid-svg-icons';
+import {faCat, faHome, faTree, faUser} from '@fortawesome/free-solid-svg-icons';
 import FloraCardList from './Component/FloraCardList';
 import DetailPeta from './Component/DetailPeta';
+import Login from './Component/Login';
+import Daftar from './Component/Daftar';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -20,14 +22,21 @@ function TabNav() {
         headerShown: false,
         tabBarShowLabel: false,
         tabBarStyle: {
-          backgroundColor: '#c2d9ff',
+          marginHorizontal: 5,
+          backgroundColor: '#5C6BC0',
+          borderTopEndRadius: 40,
+          borderTopStartRadius: 40,
         },
+        tabBarBadgeStyle: {borderTopEndRadius: 40, borderTopStartRadius: 40},
         tabBarActiveTintColor: 'red',
-        tabBarActiveBackgroundColor: '#abbede',
-        tabBarInactiveTintColor: '#f59090',
+        tabBarActiveBackgroundColor: '#3F51B5',
+        tabBarInactiveTintColor: '#cacaca',
       }}>
       <Tab.Screen
         options={{
+          tabBarItemStyle: {
+            borderTopStartRadius: 40,
+          },
           tabBarIcon: ({color}) => (
             <FontAwesomeIcon icon={faHome} size={25} color={color} />
           ),
@@ -53,6 +62,18 @@ function TabNav() {
         name="Flora"
         component={FloraCardList}
       />
+      <Tab.Screen
+        options={{
+          tabBarItemStyle: {
+            borderTopEndRadius: 40,
+          },
+          tabBarIcon: ({color}) => (
+            <FontAwesomeIcon icon={faUser} size={25} color={color} />
+          ),
+        }}
+        name="Login"
+        component={Login}
+      />
     </Tab.Navigator>
   );
 }
@@ -61,11 +82,20 @@ export default function App() {
   return (
     <NavigationContainer>
       <NativeBaseProvider>
-        <Box safeArea flex={1} px={0.5}>
-          <Stack.Navigator>
+        <Box safeArea flex={1}>
+          <Stack.Navigator
+            screenOptions={{
+              headerStyle: {
+                backgroundColor: '#5C6BC0',
+                borderBottomEndRadius: 40,
+                borderBottomStartRadius: 40,
+              },
+              headerTitleAlign: 'center',
+            }}>
             <Stack.Screen name="TAHURA NURAKSA" component={TabNav} />
             <Stack.Screen name="Detail" component={DetailInformation} />
             <Stack.Screen name="Peta" component={DetailPeta} />
+            <Stack.Screen name="Daftar" component={Daftar} />
           </Stack.Navigator>
         </Box>
       </NativeBaseProvider>

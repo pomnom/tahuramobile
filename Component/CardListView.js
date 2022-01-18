@@ -42,7 +42,7 @@ function CardListView({navigation}) {
   return (
     <ScrollView flex={1}>
       <VStack space={1} alignItems="center" safeArea>
-        <Heading textAlign="center" mb="10">
+        <Heading textAlign="center" my={5}>
           Fauna
         </Heading>
 
@@ -62,13 +62,16 @@ function CardListView({navigation}) {
                       navigation.navigate('Detail', {
                         organismeId: organisme._id,
                       })
-                    }>
+                    }
+                    my={3}
+                    bg="indigo.500"
+                    borderRadius={'lg'}>
                     <Box>
                       <AspectRatio w="100%" ratio={9 / 16}>
                         <Image
                           borderRadius={'lg'}
                           source={{
-                            uri: 'https://wallpaperaccess.com/full/317501.jpg',
+                            uri: organisme.gambar,
                           }}
                           alt="Alternate Text"
                           size="100%"
@@ -77,7 +80,13 @@ function CardListView({navigation}) {
                     </Box>
                     <Stack space={2}>
                       <Stack space={1}>
-                        <Heading>{organisme.nama_organisme}</Heading>
+                        <Text
+                          textAlign="center"
+                          fontSize="xl"
+                          fontWeight="bold"
+                          py={1}>
+                          {organisme.nama_organisme}
+                        </Text>
                       </Stack>
                     </Stack>
                   </Pressable>
@@ -87,7 +96,7 @@ function CardListView({navigation}) {
         )}
       </VStack>
       <VStack space={1} alignItems="center" safeArea>
-        <Heading textAlign="center" mb="10">
+        <Heading textAlign="center" my={5}>
           Flora
         </Heading>
         {datas && (
@@ -106,13 +115,16 @@ function CardListView({navigation}) {
                       navigation.navigate('Detail', {
                         organismeId: organisme._id,
                       })
-                    }>
+                    }
+                    my={3}
+                    bg="indigo.500"
+                    borderRadius={'lg'}>
                     <Box>
                       <AspectRatio w="100%" ratio={9 / 16}>
                         <Image
                           borderRadius={'lg'}
                           source={{
-                            uri: 'https://wallpaperaccess.com/full/317501.jpg',
+                            uri: organisme.gambar,
                           }}
                           alt="Alternate Text"
                           size="100%"
@@ -121,7 +133,13 @@ function CardListView({navigation}) {
                     </Box>
                     <Stack space={2}>
                       <Stack space={1}>
-                        <Heading>{organisme.nama_organisme}</Heading>
+                        <Text
+                          textAlign="center"
+                          fontSize="xl"
+                          fontWeight="bold"
+                          py={1}>
+                          {organisme.nama_organisme}
+                        </Text>
                       </Stack>
                     </Stack>
                   </Pressable>
