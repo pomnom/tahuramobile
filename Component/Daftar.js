@@ -10,7 +10,7 @@ import {
 } from 'native-base';
 export default function Daftar({navigations}) {
   return (
-    <Center flex={1} bg="white">
+    <Center flex={1} bg="primary.100">
       <Box
         p={5}
         w="90%"

@@ -14,7 +14,7 @@ import {
 import {Pressable} from 'react-native';
 export default function Login({navigation}) {
   return (
-    <Center flex={1} bg="white">
+    <Center flex={1} bg="primary.100">
       <Box
         p={5}
         w="90%"

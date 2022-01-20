@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {
   Image,
   Heading,
@@ -16,31 +16,12 @@ import {
   AspectRatio,
   Stack,
 } from 'native-base';
-import axiosconfig from './config/axiosconfig';
+import GetFlora from './GetFlora';
 
 export default function FaunaCardList({navigation}) {
-  const [datas, setdatas] = useState(null);
-  const [error, seterror] = useState(null);
-  const [loading, setloading] = useState(true);
-  useEffect(() => {
-    axiosconfig
-      .getAllData()
-      .then(Response => {
-        if (Response.status !== 200) {
-          seterror(Response.status);
-        } else {
-          setloading(false);
-          setdatas(Response.data);
-          seterror(null);
-        }
-      })
-      .catch(err => {
-        setloading(false);
-        seterror(err.message);
-      });
-  }, []);
+  const {datas, error, loading} = GetFlora();
   return (
-    <ScrollView flex={1}>
+    <ScrollView flex={1} bg="primary.100">
       <VStack space={1} alignItems="center" safeArea>
         <Heading textAlign="center" my={5}>
           Flora
@@ -96,7 +77,7 @@ export default function FaunaCardList({navigation}) {
                       })
                     }
                     my={3}
-                    bg="indigo.500"
+                    bg="tertiary.400"
                     borderRadius={'lg'}>
                     <Box>
                       <AspectRatio w="100%" ratio={9 / 16}>

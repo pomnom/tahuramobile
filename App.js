@@ -23,14 +23,14 @@ function TabNav() {
         tabBarShowLabel: false,
         tabBarStyle: {
           marginHorizontal: 5,
-          backgroundColor: '#5C6BC0',
+          backgroundColor: '#10b981',
           borderTopEndRadius: 40,
           borderTopStartRadius: 40,
         },
         tabBarBadgeStyle: {borderTopEndRadius: 40, borderTopStartRadius: 40},
-        tabBarActiveTintColor: 'red',
-        tabBarActiveBackgroundColor: '#3F51B5',
-        tabBarInactiveTintColor: '#cacaca',
+        tabBarActiveTintColor: '#fda4af',
+        tabBarActiveBackgroundColor: '#047857',
+        tabBarInactiveTintColor: '#a5f3fc',
       }}>
       <Tab.Screen
         options={{
@@ -38,7 +38,11 @@ function TabNav() {
             borderTopStartRadius: 40,
           },
           tabBarIcon: ({color}) => (
-            <FontAwesomeIcon icon={faHome} size={25} color={color} />
+            <FontAwesomeIcon
+              icon={faHome}
+              size={color == '#a5f3fc' ? 20 : 25}
+              color={color}
+            />
           ),
         }}
         name="Home"
@@ -47,7 +51,11 @@ function TabNav() {
       <Tab.Screen
         options={{
           tabBarIcon: ({color}) => (
-            <FontAwesomeIcon icon={faCat} size={25} color={color} />
+            <FontAwesomeIcon
+              icon={faCat}
+              size={color == '#a5f3fc' ? 20 : 25}
+              color={color}
+            />
           ),
         }}
         name="Fauna"
@@ -56,7 +64,11 @@ function TabNav() {
       <Tab.Screen
         options={{
           tabBarIcon: ({color}) => (
-            <FontAwesomeIcon icon={faTree} size={25} color={color} />
+            <FontAwesomeIcon
+              icon={faTree}
+              size={color == '#a5f3fc' ? 20 : 25}
+              color={color}
+            />
           ),
         }}
         name="Flora"
@@ -68,7 +80,11 @@ function TabNav() {
             borderTopEndRadius: 40,
           },
           tabBarIcon: ({color}) => (
-            <FontAwesomeIcon icon={faUser} size={25} color={color} />
+            <FontAwesomeIcon
+              icon={faUser}
+              size={color == '#a5f3fc' ? 20 : 25}
+              color={color}
+            />
           ),
         }}
         name="Login"
@@ -82,11 +98,16 @@ export default function App() {
   return (
     <NavigationContainer>
       <NativeBaseProvider>
-        <Box safeArea flex={1}>
+        <Box safeArea flex={1} bg="primary.100">
           <Stack.Navigator
             screenOptions={{
+              cardStyle: {
+                backgroundColor: '#cffafe',
+                borderBottomEndRadius: 40,
+                borderBottomStartRadius: 40,
+              },
               headerStyle: {
-                backgroundColor: '#5C6BC0',
+                backgroundColor: '#10b981',
                 borderBottomEndRadius: 40,
                 borderBottomStartRadius: 40,
               },

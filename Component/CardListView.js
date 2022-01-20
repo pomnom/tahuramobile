@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {
   Image,
   Heading,
@@ -16,32 +16,13 @@ import {
   AspectRatio,
   Stack,
 } from 'native-base';
-import axiosconfig from './config/axiosconfig';
+import GetDataAllOrganisme from './GetDataAllOrganisme';
 
 function CardListView({navigation}) {
-  const [datas, setdatas] = useState(null);
-  const [error, seterror] = useState(null);
-  const [loading, setloading] = useState(true);
-  useEffect(() => {
-    axiosconfig
-      .getAllData()
-      .then(Response => {
-        if (Response.status !== 200) {
-          seterror(Response.status);
-        } else {
-          setloading(false);
-          setdatas(Response.data);
-          seterror(null);
-        }
-      })
-      .catch(err => {
-        setloading(false);
-        seterror(err.message);
-      });
-  }, []);
+  const {error, loading, datas} = GetDataAllOrganisme();
   return (
-    <ScrollView flex={1}>
-      <VStack space={1} alignItems="center" safeArea>
+    <ScrollView flex={1} bg="primary.100">
+      <VStack space={1} alignItems="center" bg="primary.100" safeArea>
         <Heading textAlign="center" my={5}>
           Fauna
         </Heading>
@@ -64,7 +45,7 @@ function CardListView({navigation}) {
                       })
                     }
                     my={3}
-                    bg="indigo.500"
+                    bg="tertiary.400"
                     borderRadius={'lg'}>
                     <Box>
                       <AspectRatio w="100%" ratio={9 / 16}>
@@ -95,7 +76,7 @@ function CardListView({navigation}) {
           </HStack>
         )}
       </VStack>
-      <VStack space={1} alignItems="center" safeArea>
+      <VStack space={1} alignItems="center" safeArea bg="primary.100">
         <Heading textAlign="center" my={5}>
           Flora
         </Heading>
@@ -117,7 +98,7 @@ function CardListView({navigation}) {
                       })
                     }
                     my={3}
-                    bg="indigo.500"
+                    bg="tertiary.400"
                     borderRadius={'lg'}>
                     <Box>
                       <AspectRatio w="100%" ratio={9 / 16}>

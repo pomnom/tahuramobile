@@ -1,18 +1,14 @@
 import React, {useEffect, useState} from 'react';
-import {Box, Center, Text} from 'native-base';
+import {Box, Center, Text, Spinner, Heading} from 'native-base';
 import MapView, {Marker} from 'react-native-maps';
-import axiosconfig from './config/axiosconfig';
-import axios from 'axios';
 import Geolocation from 'react-native-geolocation-service';
+import GetPetas from './GetPetas';
 
 function DetailPeta({navigations, route}) {
   const {organismeId} = route.params;
-  const [kordinats, setkordinats] = useState(null);
-  const [error, seterror] = useState(null);
-  const [loading, setloading] = useState(true);
-  const [organisme, setorganisme] = useState(null);
+  const {kordinats, error, loading, organisme} = GetPetas(organismeId);
   const [myloc, setmyloc] = useState(null);
-  useEffect(() => {
+  const getmyloc = () => {
     Geolocation.getCurrentPosition(
       position => {
         setmyloc(position);
@@ -23,33 +19,22 @@ function DetailPeta({navigations, route}) {
       },
       {enableHighAccuracy: true, timeout: 15000, maximumAge: 10000},
     );
-    axios
-      .all([
-        axiosconfig.getDataById(organismeId),
-        axiosconfig.getAllPeta(organismeId),
-      ])
-      .then(
-        axios.spread((...responses) => {
-          setorganisme(responses[0].data);
-          setkordinats(responses[1].data);
-          setloading(false);
-          seterror(null);
-        }),
-      )
-      .catch(err => {
-        if (err.response) {
-          seterror(false);
-          seterror(err.message);
-        } else if (error.request) {
-          setloading(false);
-          seterror(error.message);
-        }
-      });
+  };
+
+  useEffect(() => {
+    getmyloc();
   }, []);
   return (
-    <Center bg="white">
+    <Center bg="primary.100" flex={1}>
       {error && <Box>{error}</Box>}
-      {loading && <Box>Loading..</Box>}
+      {loading && (
+        <Center justifyContent="center" alignItems="center">
+          <Spinner accessibilityLabel="Loading posts" size="lg" />
+          <Heading color="primary.500" fontSize="md">
+            Memuat Data
+          </Heading>
+        </Center>
+      )}
       {organisme && (
         <Text
           textAlign="center"

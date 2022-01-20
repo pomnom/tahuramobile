@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {
   AspectRatio,
   Box,
@@ -12,48 +12,24 @@ import {
   Spinner,
   Button,
 } from 'native-base';
-import axiosconfig from './config/axiosconfig';
+import GetDetail from './GetDetail';
 
 function DetailInformation({navigation, route}) {
   const {organismeId} = route.params;
-  const [datas, setdatas] = useState(null);
-  const [error, seterror] = useState(null);
-  const [loading, setloading] = useState(true);
-
-  const getData = () => {
-    axiosconfig
-      .getDataById(organismeId)
-      .then(Response => {
-        if (Response.status !== 200) {
-          seterror(Response.status);
-        } else {
-          setloading(false);
-          setdatas(Response.data);
-          seterror(null);
-        }
-      })
-      .catch(err => {
-        setloading(false);
-        seterror(err.message);
-      });
-  };
-
-  useEffect(() => {
-    getData();
-  }, []);
+  const {datas, error, loading} = GetDetail(organismeId);
 
   return (
-    <ScrollView>
-      <Center flex={1}>
+    <Center flex={1}>
+      {loading && (
+        <Center justifyContent="center" alignItems="center">
+          <Spinner accessibilityLabel="Loading posts" size="lg" />
+          <Heading color="primary.500" fontSize="md">
+            Memuat Data
+          </Heading>
+        </Center>
+      )}
+      <ScrollView>
         {error && <Box>{error}</Box>}
-        {loading && (
-          <Center flexDir="row" my="50%">
-            <Spinner accessibilityLabel="Loading posts" size="lg" />
-            <Heading color="primary.500" fontSize="md">
-              Memuat Data
-            </Heading>
-          </Center>
-        )}
         {datas && (
           <Box w={'100%'} h={'100%'}>
             <Box>
@@ -95,8 +71,15 @@ function DetailInformation({navigation, route}) {
                 <Text mt="0.5" fontSize="lg" textAlign="center">
                   {datas.jumlah && 'Jumlah : ' + datas.jumlah}
                 </Text>
-                <Center m="2">
+                <Center
+                  mx={{
+                    base: 'auto',
+                    md: '0',
+                  }}>
                   <Button
+                    variant="solid"
+                    colorScheme="secondary"
+                    size="lg"
                     onPress={() =>
                       navigation.navigate('Peta', {
                         organismeId: datas._id,
@@ -110,8 +93,8 @@ function DetailInformation({navigation, route}) {
             </Stack>
           </Box>
         )}
-      </Center>
-    </ScrollView>
+      </ScrollView>
+    </Center>
   );
 }
 
