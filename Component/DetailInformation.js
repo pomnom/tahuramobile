@@ -12,7 +12,7 @@ import {
   Spinner,
   Button,
 } from 'native-base';
-import GetDetail from './GetDetail';
+import GetDetail from './catchapi/GetDetail';
 
 function DetailInformation({navigation, route}) {
   const {organismeId} = route.params;

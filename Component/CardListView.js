@@ -16,7 +16,7 @@ import {
   AspectRatio,
   Stack,
 } from 'native-base';
-import GetDataAllOrganisme from './GetDataAllOrganisme';
+import GetDataAllOrganisme from './catchapi/GetDataAllOrganisme';
 
 function CardListView({navigation}) {
   const {error, loading, datas} = GetDataAllOrganisme();

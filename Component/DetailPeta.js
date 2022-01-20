@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Box, Center, Text, Spinner, Heading} from 'native-base';
 import MapView, {Marker} from 'react-native-maps';
 import Geolocation from 'react-native-geolocation-service';
-import GetPetas from './GetPetas';
+import GetPetas from './catchapi/GetPetas';
 
 function DetailPeta({navigations, route}) {
   const {organismeId} = route.params;

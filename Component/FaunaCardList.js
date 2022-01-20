@@ -16,7 +16,7 @@ import {
   AspectRatio,
   Stack,
 } from 'native-base';
-import GetFauna from './GetFauna';
+import GetFauna from './catchapi/GetFauna';
 
 export default function FaunaCardList({navigation}) {
   const {datas, error, loading} = GetFauna();
