@@ -25,7 +25,7 @@ function DetailPeta({navigations, route}) {
     getmyloc();
   }, []);
   return (
-    <Center bg="primary.100" flex={1}>
+    <Center flex={1}>
       {error && <Box>{error}</Box>}
       {loading && (
         <Center justifyContent="center" alignItems="center">

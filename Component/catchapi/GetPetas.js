@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {useState, useEffect} from 'react';
-import axiosconfig from './config/axiosconfig';
+import axiosconfig from '../config/axiosconfig';
 function GetPetas(organismeId) {
   const [kordinats, setkordinats] = useState(null);
   const [error, seterror] = useState(null);
@@ -8,6 +8,8 @@ function GetPetas(organismeId) {
   const [organisme, setorganisme] = useState(null);
   useEffect(() => {
     let cleanup = true;
+    setkordinats(null);
+    setorganisme(null);
     axios
       .all([
         axiosconfig.getDataById(organismeId),

@@ -6,6 +6,7 @@ function GetDataAllOrganisme() {
   const [datas, setdatas] = useState(null);
   useEffect(() => {
     let cleanup = true;
+    setdatas(null);
     axiosconfig
       .getAllData()
       .then(Response => {

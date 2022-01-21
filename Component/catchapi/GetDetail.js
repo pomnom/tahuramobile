@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import axiosconfig from './config/axiosconfig';
+import axiosconfig from '../config/axiosconfig';
 
 function GetDetail(organismeId) {
   const [datas, setdatas] = useState(null);
@@ -7,6 +7,7 @@ function GetDetail(organismeId) {
   const [loading, setloading] = useState(true);
   useEffect(() => {
     let cleanup = true;
+    setdatas(null);
     axiosconfig
       .getDataById(organismeId)
       .then(Response => {

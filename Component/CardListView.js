@@ -21,9 +21,15 @@ import GetDataAllOrganisme from './catchapi/GetDataAllOrganisme';
 function CardListView({navigation}) {
   const {error, loading, datas} = GetDataAllOrganisme();
   return (
-    <ScrollView flex={1} bg="primary.100">
-      <VStack space={1} alignItems="center" bg="primary.100" safeArea>
-        <Heading textAlign="center" my={5}>
+    <ScrollView flex={1}>
+      <VStack space={1} alignItems="center" safeArea>
+        <Heading
+          px="40"
+          py="4"
+          my="3"
+          bg="emerald.400"
+          borderRadius="100"
+          textAlign="center">
           Fauna
         </Heading>
 
@@ -40,12 +46,13 @@ function CardListView({navigation}) {
                 <Box key={organisme._id} width={'48%'}>
                   <Pressable
                     onPress={() =>
-                      navigation.navigate('Detail', {
-                        organismeId: organisme._id,
+                      navigation.navigate('detail', {
+                        screen: 'Detail',
+                        params: {organismeId: organisme._id},
                       })
                     }
                     my={3}
-                    bg="tertiary.400"
+                    bg="emerald.400"
                     borderRadius={'lg'}>
                     <Box>
                       <AspectRatio w="100%" ratio={9 / 16}>
@@ -76,8 +83,15 @@ function CardListView({navigation}) {
           </HStack>
         )}
       </VStack>
-      <VStack space={1} alignItems="center" safeArea bg="primary.100">
-        <Heading textAlign="center" my={5}>
+      <VStack space={1} alignItems="center" safeArea>
+        <Heading
+          textAlign="center"
+          px="40"
+          py="4"
+          my="3"
+          bg="emerald.400"
+          borderRadius="100"
+          textAlign="center">
           Flora
         </Heading>
         {datas && (
@@ -93,12 +107,13 @@ function CardListView({navigation}) {
                 <Box key={organisme._id} width={'48%'}>
                   <Pressable
                     onPress={() =>
-                      navigation.navigate('Detail', {
-                        organismeId: organisme._id,
+                      navigation.navigate('detail', {
+                        screen: 'Detail',
+                        params: {organismeId: organisme._id},
                       })
                     }
                     my={3}
-                    bg="tertiary.400"
+                    bg="emerald.400"
                     borderRadius={'lg'}>
                     <Box>
                       <AspectRatio w="100%" ratio={9 / 16}>

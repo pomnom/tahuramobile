@@ -1,11 +1,12 @@
 import {useEffect, useState} from 'react';
-import axiosconfig from './config/axiosconfig';
+import axiosconfig from '../config/axiosconfig';
 function GetFauna() {
   const [datas, setdatas] = useState(null);
   const [error, seterror] = useState(null);
   const [loading, setloading] = useState(true);
   useEffect(() => {
     let cleanup = true;
+    setdatas(null);
     axiosconfig
       .getAllData()
       .then(Response => {

@@ -21,11 +21,8 @@ import GetFauna from './catchapi/GetFauna';
 export default function FaunaCardList({navigation}) {
   const {datas, error, loading} = GetFauna();
   return (
-    <ScrollView flex={1} bg="primary.100">
+    <ScrollView flex={1}>
       <VStack space={1} alignItems="center" safeArea>
-        <Heading textAlign="center" my={5}>
-          Fauna
-        </Heading>
         {error && (
           <Alert w="100%" status="error">
             <VStack space={2} flexShrink={1} w="100%">
@@ -72,8 +69,9 @@ export default function FaunaCardList({navigation}) {
                 <Box key={organisme._id} width={'48%'}>
                   <Pressable
                     onPress={() =>
-                      navigation.navigate('Detail', {
-                        organismeId: organisme._id,
+                      navigation.navigate('detail', {
+                        screen: 'Detail',
+                        params: {organismeId: organisme._id},
                       })
                     }
                     my={3}
