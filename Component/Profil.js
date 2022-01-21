@@ -77,9 +77,9 @@ export default function Profil({}) {
             <Divider my="2" bg="emerald.400" thickness="3" />
           </Center>
           <Heading fontWeight="semibold" fontSize="lg" color="emerald.600">
-            Email :{' '}
+            Profil :{' '}
             <Heading fontWeight="medium" fontSize="lg">
-              {user.email}
+              {user.status ? 'Admin' : 'Pengguna'}
             </Heading>
           </Heading>
           <Button

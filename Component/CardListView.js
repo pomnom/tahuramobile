@@ -28,7 +28,7 @@ function CardListView({navigation}) {
           py="4"
           my="3"
           bg="emerald.400"
-          borderRadius="100"
+          borderBottomRadius="50"
           textAlign="center">
           Fauna
         </Heading>
@@ -90,7 +90,7 @@ function CardListView({navigation}) {
           py="4"
           my="3"
           bg="emerald.400"
-          borderRadius="100"
+          borderBottomRadius="50"
           textAlign="center">
           Flora
         </Heading>

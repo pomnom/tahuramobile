@@ -104,6 +104,7 @@ export default function Login({navigation}) {
             <FormControl.Label>Email</FormControl.Label>
             <Input
               type="email"
+              placeholder="contoh@mail.com"
               onChangeText={email => setemail(email.toLowerCase())}
             />
           </FormControl>
@@ -111,6 +112,7 @@ export default function Login({navigation}) {
             <FormControl.Label>Kata Sandi</FormControl.Label>
             <Input
               type="password"
+              placeholder="******"
               onChangeText={password => setpassword(password)}
             />
           </FormControl>
@@ -118,7 +120,7 @@ export default function Login({navigation}) {
             {isloading ? (
               <Button
                 isLoading
-                isLoadingText="Submitting"
+                isLoadingText="Sedang masuk"
                 variant="solit"
                 colorScheme="indigo">
                 Button
