@@ -19,7 +19,9 @@ import {
 import GetDataAllOrganisme from './catchapi/GetDataAllOrganisme';
 
 function CardListView({navigation}) {
-  const {error, loading, datas} = GetDataAllOrganisme();
+  const {error, loading, datas} = GetDataAllOrganisme(
+    'https://organisme-service.herokuapp.com/organisme',
+  );
   return (
     <ScrollView flex={1}>
       <VStack space={1} alignItems="center" safeArea>

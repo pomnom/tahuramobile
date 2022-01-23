@@ -29,7 +29,9 @@ export default function Profil({}) {
         setisloading(false);
       })
       .catch(err => {
-        console.log(err.response);
+        if (err.response) {
+          signOut();
+        }
       });
   };
   React.useEffect(() => {
@@ -77,7 +79,7 @@ export default function Profil({}) {
             <Divider my="2" bg="emerald.400" thickness="3" />
           </Center>
           <Heading fontWeight="semibold" fontSize="lg" color="emerald.600">
-            Profil :{' '}
+            Status :{' '}
             <Heading fontWeight="medium" fontSize="lg">
               {user.status ? 'Admin' : 'Pengguna'}
             </Heading>

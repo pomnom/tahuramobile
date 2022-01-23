@@ -1,23 +1,22 @@
+import axios from 'axios';
 import {useEffect, useState} from 'react';
-import axiosconfig from '../config/axiosconfig';
-function GetDataAllOrganisme() {
+const GetDataAllOrganisme = url => {
   const [error, seterror] = useState(null);
   const [loading, setloading] = useState(true);
   const [datas, setdatas] = useState(null);
   useEffect(() => {
-    let cleanup = true;
-    setdatas(null);
-    axiosconfig
-      .getAllData()
+    const source = axios.CancelToken.source();
+    axios
+      .get(url, {
+        cancelToken: source.token,
+      })
       .then(Response => {
-        if (cleanup) {
-          if (Response.status !== 200) {
-            seterror(Response.status);
-          } else {
-            setloading(false);
-            setdatas(Response.data);
-            seterror(null);
-          }
+        if (Response.status !== 200) {
+          seterror(Response.status);
+        } else {
+          setloading(false);
+          setdatas(Response.data);
+          seterror(null);
         }
       })
       .catch(err => {
@@ -26,11 +25,9 @@ function GetDataAllOrganisme() {
           seterror(err.message);
         }
       });
-    return () => {
-      cleanup = false;
-    };
+    return () => source.cancel();
   }, []);
   return {error, loading, datas};
-}
+};
 
 export default GetDataAllOrganisme;

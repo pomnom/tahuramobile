@@ -19,7 +19,9 @@ import {
 import GetFlora from './catchapi/GetFlora';
 
 export default function FaunaCardList({navigation}) {
-  const {datas, error, loading} = GetFlora();
+  const {datas, error, loading} = GetFlora(
+    'https://organisme-service.herokuapp.com/organisme',
+  );
   return (
     <ScrollView flex={1}>
       <VStack space={1} alignItems="center" safeArea>

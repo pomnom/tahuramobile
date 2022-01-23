@@ -16,7 +16,9 @@ import GetDetail from './catchapi/GetDetail';
 
 function DetailInformation({navigation, route}) {
   const {organismeId} = route.params;
-  const {datas, error, loading} = GetDetail(organismeId);
+  const {datas, error, loading} = GetDetail(
+    'https://organisme-service.herokuapp.com/organisme/' + organismeId,
+  );
 
   return (
     <Center flex={1}>
@@ -70,7 +72,45 @@ function DetailInformation({navigation, route}) {
                 <Divider bg="indigo.500" thickness="2" />
                 <Text mt="0.5" fontSize="lg" textAlign="center">
                   {datas.jumlah && 'Jumlah : ' + datas.jumlah}
+                  {datas.status_organisme ? ' Ekor' : ' Pohon'}
                 </Text>
+                <Center py={3}>
+                  <Box
+                    bg="gray.200"
+                    w="96%"
+                    justifyContent="center"
+                    alignItems="center">
+                    <Heading color="indigo.500">Klasifikasi</Heading>
+                    <Divider bg="gray.500" thickness="1" />
+                    <Text fontSize="lg" bold>
+                      Nama Ilmiah{' : '}
+                      <Text italic>{datas.klasifikasi.namailmiah}</Text>
+                    </Text>
+                    <Divider bg="gray.500" thickness="1" />
+                    <Text fontSize="lg" bold>
+                      Kingdom{' : '}
+                      <Text italic>{datas.klasifikasi.kingdom}</Text>
+                    </Text>
+                    <Divider bg="gray.500" thickness="1" />
+                    <Divider bg="gray.500" thickness="1" />
+                    <Text fontSize="lg" bold>
+                      Ordo{' : '}
+                      <Text italic>{datas.klasifikasi.ordo}</Text>
+                    </Text>
+                    <Divider bg="gray.500" thickness="1" />
+                    <Divider bg="gray.500" thickness="1" />
+                    <Text fontSize="lg" bold>
+                      Famili{' : '}
+                      <Text italic>{datas.klasifikasi.famili}</Text>
+                    </Text>
+                    <Divider bg="gray.500" thickness="1" />
+                    <Divider bg="gray.500" thickness="1" />
+                    <Text fontSize="lg" bold>
+                      Genus{' : '}
+                      <Text italic>{datas.klasifikasi.genus}</Text>
+                    </Text>
+                  </Box>
+                </Center>
                 <Center
                   mx={{
                     base: 'auto',

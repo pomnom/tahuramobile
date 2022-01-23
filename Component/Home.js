@@ -22,7 +22,6 @@ const AuthStackScreen = () => {
       screenOptions={{
         headerTitleAlign: 'center',
         cardStyle: {
-          backgroundColor: '#cffafe',
           borderBottomEndRadius: 40,
           borderBottomStartRadius: 40,
         },
@@ -131,7 +130,6 @@ const StackDetailScreen = () => {
       screenOptions={{
         headerTitleAlign: 'center',
         cardStyle: {
-          backgroundColor: '#cffafe',
           borderBottomEndRadius: 40,
           borderBottomStartRadius: 40,
         },

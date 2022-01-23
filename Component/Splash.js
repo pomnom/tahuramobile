@@ -3,8 +3,8 @@ import {Center, Image} from 'native-base';
 
 function Spash() {
   return (
-    <Center flex={1} maxW="100%">
-      <Image source={require('./srcimg/splash.png')} alt="text" size="full" />
+    <Center flex={1} bg="white">
+      <Image source={require('../assets/logo.png')} alt="text" size="2xl" />
     </Center>
   );
 }
