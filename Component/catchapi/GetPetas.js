@@ -29,6 +29,9 @@ function GetPetas(organismeId) {
           seterror(error.message);
         }
       });
+    return () => {
+      setkordinats(null), seterror(null), setloading(null), setorganisme(null);
+    };
   }, []);
   return {kordinats, error, loading, organisme};
 }

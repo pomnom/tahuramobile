@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   AspectRatio,
   Box,
@@ -12,13 +12,42 @@ import {
   Spinner,
   Button,
 } from 'native-base';
-import GetDetail from './catchapi/GetDetail';
+import axios from 'axios';
 
 function DetailInformation({navigation, route}) {
   const {organismeId} = route.params;
-  const {datas, error, loading} = GetDetail(
-    'https://organisme-service.herokuapp.com/organisme/' + organismeId,
-  );
+  const [datas, setdatas] = useState(null);
+  const [error, seterror] = useState(null);
+  const [loading, setloading] = useState(null);
+  useEffect(() => {
+    const fetchAxios = () => {
+      setloading(true);
+      axios
+        .get(
+          'https://organisme-service.herokuapp.com/organisme/' + organismeId,
+          {},
+        )
+        .then(Response => {
+          if (Response.status !== 200) {
+            seterror(Response.status);
+          } else {
+            setloading(false);
+            setdatas(Response.data);
+            seterror(null);
+          }
+        })
+        .catch(err => {
+          setloading(false);
+          seterror(err.message);
+        });
+    };
+    fetchAxios();
+    return () => {
+      setdatas(null);
+      seterror(null);
+      setloading(null);
+    };
+  }, []);
 
   return (
     <Center flex={1}>

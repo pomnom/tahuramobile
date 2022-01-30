@@ -41,9 +41,7 @@ export default function FaunaCardList({navigation}) {
                     <CloseIcon
                       size="3"
                       color="coolGray.600"
-                      onPress={() => {
-                        seterror(false);
-                      }}
+                      onPress={seterror(false)}
                     />
                   }
                 />

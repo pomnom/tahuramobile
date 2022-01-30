@@ -26,7 +26,7 @@ export default function Daftar({navigation}) {
   const [error, seterror] = useState();
   const [isloading, setisloading] = useState(false);
   const toast = useToast();
-  const handleSubmit = async e => {
+  const handleSubmit = async () => {
     seterror(null);
     setisloading(true);
     if (
@@ -173,12 +173,7 @@ export default function Daftar({navigation}) {
                 Button
               </Button>
             ) : (
-              <Button
-                mt="2"
-                colorScheme="indigo"
-                onPress={() => {
-                  handleSubmit();
-                }}>
+              <Button mt="2" colorScheme="indigo" onPress={handleSubmit}>
                 Daftar
               </Button>
             )}

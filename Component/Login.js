@@ -126,12 +126,7 @@ export default function Login({navigation}) {
                 Button
               </Button>
             ) : (
-              <Button
-                mt="2"
-                colorScheme="indigo"
-                onPress={() => {
-                  handleSubmit();
-                }}>
+              <Button mt="2" colorScheme="indigo" onPress={handleSubmit}>
                 Masuk
               </Button>
             )}

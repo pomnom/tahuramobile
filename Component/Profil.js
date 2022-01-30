@@ -88,9 +88,7 @@ export default function Profil({}) {
             my="5"
             variant="solid"
             colorScheme="primary"
-            onPress={() => {
-              signOut();
-            }}>
+            onPress={signOut}>
             Logout
           </Button>
         </View>

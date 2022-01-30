@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Image,
   Heading,
@@ -16,15 +16,40 @@ import {
   AspectRatio,
   Stack,
 } from 'native-base';
-import GetDataAllOrganisme from './catchapi/GetDataAllOrganisme';
+import axios from 'axios';
 
 function CardListView({navigation}) {
-  const {error, loading, datas} = GetDataAllOrganisme(
-    'https://organisme-service.herokuapp.com/organisme',
-  );
+  const [error, seterror] = useState(null);
+  const [loading, setloading] = useState(true);
+  const [datas, setdatas] = useState(null);
+  useEffect(() => {
+    const fectAxios = () => {
+      axios
+        .get('https://organisme-service.herokuapp.com/organisme')
+        .then(Response => {
+          if (Response.status !== 200) {
+            seterror(Response.status);
+          } else {
+            setloading(false);
+            setdatas(Response.data);
+            seterror(null);
+          }
+        })
+        .catch(err => {
+          setloading(false);
+          seterror(err.message);
+        });
+    };
+    fectAxios();
+    return () => {
+      setdatas(null);
+      seterror(null);
+      setloading(null);
+    };
+  }, []);
   return (
     <ScrollView flex={1}>
-      <VStack space={1} alignItems="center" safeArea>
+      <VStack space={1} alignItems="center">
         <Heading
           px="40"
           py="4"
@@ -34,7 +59,6 @@ function CardListView({navigation}) {
           textAlign="center">
           Fauna
         </Heading>
-
         {datas && (
           <HStack
             alignItems="center"
@@ -156,18 +180,6 @@ function CardListView({navigation}) {
                   {error}
                 </Text>
               </HStack>
-              <IconButton
-                variant="unstyled"
-                icon={
-                  <CloseIcon
-                    size="3"
-                    color="coolGray.600"
-                    onPress={() => {
-                      seterror(false);
-                    }}
-                  />
-                }
-              />
             </HStack>
           </VStack>
         </Alert>
